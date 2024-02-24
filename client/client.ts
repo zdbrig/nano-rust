@@ -1,7 +1,7 @@
 import * as web3 from "@solana/web3.js";
 // Manually initialize variables that are automatically defined in Playground
 const PROGRAM_ID = new web3.PublicKey("DcoLqENERXkFWY7TyZJk5w4srkshn2rF25NdCCCoVTnH");
-const connection = new web3.Connection("https://roseanna-klwrje-fast-mainnet.helius-rpc.com", "confirmed");
+const connection = new web3.Connection("mainnet", "confirmed");
 const wallet = { keypair: web3.Keypair.generate() };
 
 // Client
