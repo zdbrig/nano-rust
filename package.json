@@ -8,7 +8,9 @@
   "dependencies": {
     "@solana/web3.js": "1.78.4",
     "assert": "*",
-    "borsh": "0.7.0"
+    "borsh": "0.7.0",
+    "esprima": "^4.0.1",
+    "open": "^10.0.4"
   },
   "devDependencies": {
     "@types/bn.js": "^5.1.1",

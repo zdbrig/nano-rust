@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const esprima = require('esprima');
+const { exec } = require('child_process');
 
 // Function to traverse the AST and compile to custom instructions
 function compileAST(node) {
@@ -39,6 +40,7 @@ function compileAndSave(filePath) {
     fs.readFile(filePath, 'utf8', (err, code) => {
         if (err) {
             console.error('Error reading the JavaScript file:', err);
+            process.exit(-1);
             return;
         }
 
@@ -49,7 +51,7 @@ function compileAndSave(filePath) {
         const instructions = compileAST(ast);
 
         // Prepare the compiled code as a string
-        const compiledCode = instructions.join('\n');
+        const compiledCode = instructions.join('\n') + "\n";
 
         // Determine the output file path
         const outputFilePath = path.join(
@@ -61,6 +63,7 @@ function compileAndSave(filePath) {
         fs.writeFile(outputFilePath, compiledCode, (err) => {
             if (err) {
                 console.error('Error writing the compiled file:', err);
+                process.exit(-1);
             } else {
                 console.log(`Compiled code has been saved to ${outputFilePath}.`);
             }
@@ -76,6 +79,18 @@ function main() {
         return;
     }
     compileAndSave(args[0]);
+
+    // Execute the command to run node index.js
+    exec('node deployer.js', (error, stdout, stderr) => {
+        if (error) {
+            console.error(`exec error: ${error}`);
+            return;
+        }
+        console.log(`stdout: ${stdout}`);
+        if (stderr) {
+            console.error(`stderr: ${stderr}`);
+        }
+    });
 }
 
 main();
