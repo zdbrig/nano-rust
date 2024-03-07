@@ -85,3 +85,84 @@ The Solana program is written in Rust and defines the on-chain logic for executi
 Note: Make sure to have sufficient SOL balance in your Solana account to cover the transaction fees and rent exemption for deploying and executing the program.
 
 That's it! You can now use the compiler to compile JavaScript code into custom instructions, deploy the compiled scripts using the deployer, and execute them on the Solana blockchain using the deployed program.
+
+
+# Code Documentation
+
+## Compiler (compiler.js)
+
+The compiler script is responsible for reading a JavaScript file, parsing it into an Abstract Syntax Tree (AST), and compiling it into a custom set of instructions. The compiled code is then saved as a `.nano` file.
+
+### Functions
+
+- `compileAST(node)`: Recursively traverses the AST and generates custom instructions based on the node types.
+  - `node`: The AST node to compile.
+  - Returns an array of custom instructions.
+
+- `compileAndSave(filePath)`: Reads the JavaScript file, compiles it to custom instructions, and saves the compiled code as a `.nano` file.
+  - `filePath`: The path to the JavaScript file to compile.
+
+- `main()`: The main function that handles command line arguments and executes the compiler and deployer scripts.
+
+### Dependencies
+
+- `fs`: File system module for reading and writing files.
+- `path`: Path module for handling file paths.
+- `esprima`: Library for parsing JavaScript code into an AST.
+- `child_process`: Module for executing child processes (used to run the deployer script).
+
+## Deployer (deployer.js)
+
+The deployer script is responsible for deploying the compiled `.nano` script to the Solana blockchain.
+
+### Functions
+
+- `main()`: The main function that deploys the `.nano` script to the Solana blockchain.
+  - Establishes a connection to the Solana cluster.
+  - Loads the compiled `.nano` script from the specified file path.
+  - Generates a new account keypair for the script.
+  - Loads the payer account's private key from the "secret" file.
+  - Creates instructions for creating the account, writing the script data, and executing the script.
+  - Sends the transaction to the Solana blockchain.
+  - Logs the transaction signature and the public key of the newly created account.
+  - Opens the Solana Explorer in the default web browser to display the transaction details.
+
+### Dependencies
+
+- `fs`: File system module for reading files.
+- `@solana/web3.js`: Solana web3.js library for interacting with the Solana blockchain.
+- `bs58`: Library for encoding and decoding base58 strings.
+
+## Solana Program (program.rs)
+
+The Solana program is written in Rust and defines the on-chain logic for executing the compiled `.nano` scripts.
+
+### Enums
+
+- `ScriptError`: Defines custom error types for the script execution.
+
+### Functions
+
+- `process_instruction(program_id, accounts, instruction_data)`: The entry point function for processing instructions.
+  - `program_id`: The public key of the program.
+  - `accounts`: The array of account information.
+  - `instruction_data`: The instruction data passed to the program.
+  - Returns a `ProgramResult` indicating the success or failure of the instruction processing.
+
+- `write_script(accounts, data)`: Writes the script data to the specified account.
+  - `accounts`: The array of account information.
+  - `data`: The script data to write.
+  - Returns a `ProgramResult` indicating the success or failure of the write operation.
+
+- `interpret_script(accounts)`: Interprets and executes the script stored in the specified account.
+  - `accounts`: The array of account information.
+  - Returns a `ProgramResult` indicating the success or failure of the script execution.
+
+### Dependencies
+
+- `solana_program`: Solana program library for building smart contracts on the Solana blockchain.
+
+The Solana program defines the logic for handling the writing and execution of the compiled `.nano` scripts. It uses the `solana_program` library to interact with the Solana runtime and process instructions received from the deployer.
+
+Note: The Solana program assumes a specific format for the compiled `.nano` scripts and may need to be modified to support additional instructions and functionality as required.
+
