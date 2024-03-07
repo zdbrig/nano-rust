@@ -76,7 +76,7 @@ Develop the tools for executing the script and claim the fuel. It’s a multipla
 ## Maintenance
 
 ### Automated Audits
-Integration with X-Ray tool so users can audit their Novascripts prior to deployment. 
+Integration with X-Ray tool so users can audit their NovaScripts prior to deployment. 
 
 ### Servers & infrastructure
 Nova will be used to pay infrastructure providers that run the NovaScripts. We will be the first people to provide infrastructure to Novascripts and would like a small budget for doing this.
