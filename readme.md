@@ -47,7 +47,7 @@ A metadata pointer account will point to the source, stack and Data and attach d
 ### Permanent Delegate
 The Fuel account will be delegated to the execution program to allow fuel transfer between A and the Solana fee payer.
 
-<img src="https://github.com/NovaFi/nano-rust/blob/main/Diagram%202.png?raw=true">
+<img src="https://github.com/NovaFi/nano-rust/blob/main/images/Diagram%202.png?raw=true">
 
 # Development Milestones
 
