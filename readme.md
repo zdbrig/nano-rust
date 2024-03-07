@@ -42,7 +42,7 @@ In the spirit of decentralization and removing single point of failure, NovaScri
 ### Meta Data Pointers
 A metadata pointer account will point to the source, stack and Data and attach directly to the token (A). We will use data and stack persistence to realize step by step execution, similarly to a virtual CPU.
 
-<img src="https://github.com/NovaFi/nano-rust/blob/main/Diagram%201.png?raw=true">
+<img src="https://github.com/NovaFi/nano-rust/blob/main/images/Diagram%201.png?raw=true">
 
 ### Permanent Delegate
 The Fuel account will be delegated to the execution program to allow fuel transfer between A and the Solana fee payer.
