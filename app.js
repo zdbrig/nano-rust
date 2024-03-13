@@ -52,7 +52,7 @@ async function deployScript(compiledCode) {
     // Load the secretKey from the environment variables
     const secretKeyString = process.env.SECRET_KEY;
 
-    console.log(secretKeyString)
+    console.log("Found secret key")
 
     const connection = new Connection(clusterApiUrl('mainnet-beta'), 'confirmed');
     const nanoscriptData = Buffer.from(compiledCode);
