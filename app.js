@@ -55,38 +55,38 @@ async function deployScript(compiledCode) {
     console.log("Found secret key")
 
     const connection = new Connection(clusterApiUrl('mainnet-beta'), 'confirmed');
-    const nanoscriptData = Buffer.from(compiledCode);
-    const nanoscriptAccount = Keypair.generate();
+    const novascriptData = Buffer.from(compiledCode);
+    const novascriptAccount = Keypair.generate();
     
     let secretKey = bs58.decode(secretKeyString.trim());
     const payerAccount = Keypair.fromSecretKey(secretKey);
     
-    const rentExemptionAmount = await connection.getMinimumBalanceForRentExemption(nanoscriptData.length + 1);
+    const rentExemptionAmount = await connection.getMinimumBalanceForRentExemption(novascriptData.length + 1);
     const programId = new PublicKey("DcoLqENERXkFWY7TyZJk5w4srkshn2rF25NdCCCoVTnH");
 
     // Create account and write data instruction
     const createAccountInstruction = SystemProgram.createAccount({
         fromPubkey: payerAccount.publicKey,
-        newAccountPubkey: nanoscriptAccount.publicKey,
+        newAccountPubkey: novascriptAccount.publicKey,
         lamports: rentExemptionAmount,
-        space: nanoscriptData.length + 1,
+        space: novascriptData.length + 1,
         programId,
     });
 
     const writeDataInstruction = new TransactionInstruction({
-        keys: [{ pubkey: nanoscriptAccount.publicKey, isSigner: false, isWritable: true }],
+        keys: [{ pubkey: novascriptAccount.publicKey, isSigner: false, isWritable: true }],
         programId,
-        data: Buffer.concat([Buffer.from([0]), nanoscriptData]), // Prepend the instruction number
+        data: Buffer.concat([Buffer.from([0]), novascriptData]), // Prepend the instruction number
     });
 
     const executeInstruction = new TransactionInstruction({
-        keys: [{ pubkey: nanoscriptAccount.publicKey, isSigner: false, isWritable: false }],
+        keys: [{ pubkey: novascriptAccount.publicKey, isSigner: false, isWritable: false }],
         programId: programId,
         data: Buffer.from([0x01]),
     });
 
     const transaction = new Transaction().add(createAccountInstruction, writeDataInstruction , executeInstruction);
-    const signature = await connection.sendTransaction(transaction, [payerAccount, nanoscriptAccount], {skipPreflight: false, preflightCommitment: 'confirmed'});
+    const signature = await connection.sendTransaction(transaction, [payerAccount, novascriptAccount], {skipPreflight: false, preflightCommitment: 'confirmed'});
     
     return { signature: signature, explorerUrl: `https://explorer.solana.com/tx/${signature}?cluster=mainnet-beta` };
 }
@@ -108,7 +108,7 @@ app.post('/deploy', async (req, res) => {
 
         console.log(`Transaction confirmed with signature`);
 
-        console.log('NanoScript account created and script uploaded successfully');
+        console.log('novascript account created and script uploaded successfully');
 
 
         res.json({ success: true, message : "print(1);", code  : compiledCode, deploymentResult : deploymentResult , });

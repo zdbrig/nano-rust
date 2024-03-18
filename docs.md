@@ -39,7 +39,7 @@ The deployer is a Node.js script that deploys the compiled `.nano` script to the
 
 2. Create a file named `secret` in the same directory as the deployer script, and paste your Solana account's private key in it.
 
-3. Update the `nanoscriptFilePath` variable in the deployer script to point to the compiled `.nano` file you want to deploy.
+3. Update the `novascriptFilePath` variable in the deployer script to point to the compiled `.nano` file you want to deploy.
 
 4. Run the deployer script using the following command:
    ```

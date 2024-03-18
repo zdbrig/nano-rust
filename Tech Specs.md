@@ -10,16 +10,16 @@ NovaScripts can be built using the following components:
 Using the token extension program.
 
 ### Source Account
-The Source Account holds the NanoScript bytecode, containing all the logic and operations to be executed by the VM. The Token mint (A) will this the source as a part of the metadata.
+The Source Account holds the Novascript bytecode, containing all the logic and operations to be executed by the VM. The Token mint (A) will this the source as a part of the metadata.
 
 ### Stack Account
-The Stack Account simulates a CPU stack, managing temporary data, execution flow, and function calls within NanoScripts. The Token mint (A) will this the stack account as a part of the metadata.
+The Stack Account simulates a CPU stack, managing temporary data, execution flow, and function calls within Novascripts. The Token mint (A) will this the stack account as a part of the metadata.
 
 ### Data Account
 Acting as the main memory, the Data Account stores variables, state information, and the data manipulated during the execution of scripts. The Token mint (A) will this the data account as a part of the metadata.
 
 ### Execution Program
-The Execution Program is a custom Solana program developed in C. It interprets and executes NanoScript bytecode, managing Fuel consumption and facilitating interaction with the Source, Stack, and Data Accounts according to the script's logic. 
+The Execution Program is a custom Solana program developed in C. It interprets and executes Novascript bytecode, managing Fuel consumption and facilitating interaction with the Source, Stack, and Data Accounts according to the script's logic. 
 
 ### Fuel Token Mint (B)
 Using the token extension program (B) will be delegated to the Execution program.
@@ -31,7 +31,7 @@ An off-chain program that will execute the scripts and mine the fuel.
 NovaScripts will come with a set of APIs that easily connect with the major Solana’s DeFi applications: Marginfi, Kamino, Orca, Raydium, Solend and others.
 
 ### C Programming Language Interpreter
-The backbone of NovaScript's execution environment is its C Programming Language Interpreter, developed in Rust. This ensures fast, reliable, and precise interpretation of NanoScripts within the Solana Virtual Machine (VM).
+The backbone of NovaScript's execution environment is its C Programming Language Interpreter, developed in Rust. This ensures fast, reliable, and precise interpretation of Novascripts within the Solana Virtual Machine (VM).
 
 
 ## Infrastructure
